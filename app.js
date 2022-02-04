@@ -92,9 +92,57 @@ console.log(display);
 
 //used for data privacy - local scope ends forever
 
-(function display3(name){
-    console.log("Hello World") + name;
+(function display3(name="Ali"){
+    console.log("Hello World "+name);
 })();
 
 // console.log(display3);
 // display3();
+
+// hoisting
+
+// cant use let variables before initialization - can use var variables
+// es6 functions can't be used b4 definition - normal ones can be
+
+
+// closures - like IIFE - for privacy
+//function executed but still can access local variables
+
+function display4(){
+    let x = 5;
+
+    function nestedFun(){
+        console.log(x);
+        console.log("Hello world");
+    }
+
+    return nestedFun;
+}
+
+const myFun = display4();
+myFun(); //still can access x even tho display4 has already finished executing
+
+
+// this keyword - value keeps changing - context matters
+
+console.log(this.name);
+
+let obj3 = {
+
+    name : "Harris",
+
+    displayName: function(){
+        console.log(this.name);
+    }
+
+};
+
+obj3.displayName();
+
+//can be forced to change
+
+let obj4 = {
+    name : "Eva"
+};
+
+obj3.displayName.call(obj4);
